@@ -1,0 +1,31 @@
+{% load staticfiles %}
+
+<td>
+    <dir id="block">
+            <table>
+                <tr>
+                    <td>
+                        {% include "tools/smallicon.html" %}
+                    </td>
+                    <td>
+                        <a href="{% url 'tools:detail' myrequest.tool_requested.pk %}">{{ myrequest.tool_requested.tool_name }}</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img id="pic_small" src="{% static 'tools/user.png' %}"/>
+                    </td>
+                    <td>
+                        <a href="{% url 'tools:user' %}?u={{request.requester.pk}}">{{ myrequest.requester.user.get_full_name }}</a>
+                    </td>
+                </tr>                
+            </table>
+            Status:
+            <br>
+            {% for key, value in status_choices %}
+                {% if key == myrequest.req_status %}
+                    {{value}}
+                {% endif%}
+            {% endfor %}
+    </dir>
+</td>

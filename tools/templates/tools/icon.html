@@ -1,0 +1,13 @@
+{% load staticfiles %}
+
+{%if tool.get_tool_type_display == "Powertool" %}
+    <img id="pic" src="{% static 'tools/powertool.png' %}"/>
+{%elif tool.get_tool_type_display == "Construction" %}
+    <img id="pic" src="{% static 'tools/hammer.png' %}"/>
+{%elif tool.get_tool_type_display == "Automotive" %}
+    <img id="pic" src="{% static 'tools/wrench.png' %}"/>
+{%elif tool.get_tool_type_display == "Garden" %}
+    <img id="pic" src="{% static 'tools/shovel.png' %}"/>
+{%else%}
+    <img id="pic" src="{% static 'tools/other.png' %}"/>
+{%endif%}

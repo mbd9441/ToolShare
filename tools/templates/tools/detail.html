@@ -1,0 +1,137 @@
+{% load staticfiles %}
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'tools/style.css' %}" />
+</head>
+{% include "tools/banner.html" %}
+
+<dir>
+    <center>
+        {% include "tools/status.html" %}
+        <font size="6">{{tool.tool_name}} </font>
+            
+        <table id = "information">
+            <tr >
+                <td>
+                    <big>Owner: </big>
+                </td>
+                <td>
+                    {% if tool.owner == user %}
+                        <a href="{% url 'tools:user' %}?u={{tool.owner.pk}}">You own this tool</a>
+                    {% else %}
+                        <a href="{% url 'tools:user' %}?u={{tool.owner.pk}}">{{ tool.owner.user.get_full_name }}</a>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <big>Desc: </big>
+                </td>
+                <td>
+                    {{tool.tool_desc}}
+                <td>
+            </tr>
+            <tr>
+                <td>
+                    <big>Type: </big>
+                </td>
+                <td>
+                    {{tool.get_tool_type_display}}
+                <td>
+            </tr>
+        </table>
+            
+        <br>
+        {% include "tools/icon.html" %}
+        <br>
+        {% if tool.owner == user %}
+            {% if not rent %}
+                <table>
+                     <tr>
+                        <td>
+                            <a href="{%url 'tools:list'%}?a=0&t={{tool.pk}}"id="button">Edit</a>
+                        </td>
+                        <td>
+                            <a href="{%url 'tools:list'%}?a=1&t={{tool.pk}}" id="deletebutton"onclick="makeAlert()">Remove</a>
+                        </td>
+                    </tr>
+                </table>
+            {% else %}
+                <table>
+                     <tr>
+
+                        <td>
+                            <dir id="deadbutton">Edit</dir>
+                        </td>
+                        <td>
+                            <dir id="deadbutton">Remove</dir>
+                        </td>
+                    </tr>
+                </table>
+            {% endif %}
+            
+            {% if rent %}
+                Currently rented by: {{rent.renter.user.get_full_name}}
+            {% elif not rent and not tool.rentable %}
+                Tool is not being shared.
+            {% endif%}
+        {%else%}
+            {%if rent %}
+                {% if rent.renter == user %}
+                    <a href="{%url 'tools:returntool'%}?u={{user.pk}}&t={{tool.pk}}"id="button">Return</a>
+                {% else %}
+                    <dir id="deadbutton">Borrow</dir>
+                    {% if rent %}
+                        Currently rented by: {{rent.renter.user.get_full_name}}
+                    {% endif %}
+                {% endif %}
+            {% else %}
+                {% if not user.canrent %}
+                    <dir id="deadbutton">Borrow</dir>
+                    {% if user.numrent == 0 %}
+                        You can't rent a tool because you have no tools registered.
+                    {% else %}
+                        You're renting your maximum amount of tools ({{user.numrent}}).
+                    {% endif %}
+                {% else %}
+                    {% if tool.rentable == 1 and not myrequest and user.canrent %}
+                        <a href="{%url 'tools:rent'%}?u={{user.user.pk}}&t={{tool.pk}}"id="button">Borrow</a>
+                    {% elif not rent and not tool.rentable %}
+                        <dir id="deadbutton">Borrow</dir>
+                        Tool is not being shared.
+                    {% else %}
+                        <dir id="deadbutton">Borrow</dir>
+                        You already requested this tool!
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    </center>
+</dir>
+{%if tool.owner == user %}
+    <dir>
+        <font size="6">Requests</font>
+            <dir id="scrollable">
+                <table>
+                    <tr>
+                        {% for request in tool_request_list %}
+                            {% include "tools/request_block.html" %}
+                        {% endfor %}
+                    </tr>
+                 </table>
+            </dir>
+            {% if not tool_request_list %}
+                You have no requests for this tool!
+            {% endif %}
+    </dir>
+{% endif %}
+<script>
+function makeAlert() {
+    var x;
+    if (confirm("Are you sure you want to delete this tool?") == true) {
+        x = "{%url 'tools:list'%}?a=1&t={{tool.pk}}"
+    } else {
+        x = "{% url 'tools:detail' tool.id %}"
+    }
+    document.getElementById("deletebutton").setAttribute("href", x);
+}
+</script>

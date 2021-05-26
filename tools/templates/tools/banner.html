@@ -1,0 +1,100 @@
+{% load staticfiles %} 
+
+<dir id = "banner">
+	<center><a href="{% url 'tools:tools' %}"><img id="bannerpic" src="{% static 'tools/banner.png' %}"/></a></center>
+	<br>
+    {% if user.user.is_authenticated%}
+    <dir id = "nav">
+    <ul>
+        <li class="auth">
+            <a href="{% url 'tools:tools' %}" id="nav">
+                <table>
+                    <tr>
+                        <td>
+                            <img id="pic_small" src="{% static 'tools/home.png' %}"/>
+                        </td>
+                        <td>
+                            <font size=4>Home</font>
+                        </td>
+                    </tr>
+                </table>
+            </a> 
+        </li>
+        <li class="auth">
+            <a href="{%url 'tools:list'%}"id="nav">
+                <table>
+                    <tr>
+                        <td>
+                            <img id="pic_small" src="{% static 'tools/register.png' %}"/>
+                        </td>
+                        <td>
+                            <font size=4>Register Tool</font>
+                        </td>
+                    </tr>
+                </table>
+            </a>
+        </li>
+        <li class="auth">
+            <a href="{% url 'tools:user' %}?u={{user.pk}}"id="nav">
+                <table>
+                    <tr>
+                        <td>
+                            <img id="pic_small" src="{% static 'tools/user.png' %}"/>
+                        </td>
+                        <td>
+                            <font size=4>{{user.user.first_name}}</font>
+                        </td>
+                    </tr>
+                </table>
+            </a> 
+        </li>
+        <li class="auth">
+            <a href="{%url 'tools:login'%}?a=1"id="nav">
+                <table>
+                    <tr>
+                        <td>
+                            <img id="pic_small" src="{% static 'tools/logout.png' %}"/>
+                        </td>
+                        <td>
+                            <font size=4>Log Out</font>
+                        </td>
+                    </tr>
+                </table>
+            </a> 
+        </li>
+    </ul>
+    {% else %}
+    <dir id = "nav">
+    <ul>
+        <li class="unauth">
+            <a href="{%url 'tools:login'%}"id="nav">
+                <table>
+                    <tr>
+                        <td>
+                            <img id="pic_small" src="{% static 'tools/login.png' %}"/>
+                        </td>
+                        <td>
+                            <font size=4>Log In</font>
+                        </td>
+                    </tr>
+                </table>
+            </a>
+        </li>
+        <li class="unauth">
+            <a href="{%url 'tools:register'%}"id="nav">
+                <table>
+                    <tr>
+                        <td>
+                            <img id="pic_small" src="{% static 'tools/register.png' %}"/>
+                        </td>
+                        <td>
+                            <font size=4>Register</font>
+                        </td>
+                    </tr>
+                </table>
+            </a>
+        </li>
+    </ul>
+    {% endif %}
+    </dir>
+</dir>

@@ -1,0 +1,65 @@
+{% load staticfiles %}
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'tools/style.css' %}" />
+</head>
+{% include "tools/banner.html" %}
+
+<dir>
+    <table>
+        <tr>
+            <td>
+                <img id="pic" src="{% static 'tools/community.png' %}"/>
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            <font size ="6">Community {{ user.community.zip_code }}</font>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {{user.community.num_members}} Members
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</dir>
+
+<dir>
+        <font size="6"> Members</font>
+            <dir id="scrollable">
+				<table>
+                    <tr>
+                        {% for user in user_list %}
+                            {% include "tools/user_block.html" %}
+                        {% endfor %}
+                    </tr>
+                </table>    
+			</dir>
+        {% if not user_list %}
+			<p>
+                No members in this community.
+            </p>
+		{% endif %}
+</dir>
+
+<dir>
+		<font size="6"> Tools</font>
+            <dir id="scrollable">
+                <table>
+                    <tr>
+                        {% for tool in tool_list %}
+                            {% include "tools/tool_block.html" %}
+                    {% endfor %}
+                    </tr>
+                </table>
+            </dir>
+		{% if not tool_list %}
+			<p>
+                No tools are available from this community.
+            </p>
+		{% endif %}
+</dir>

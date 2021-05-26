@@ -1,0 +1,246 @@
+#navbar{
+    margin: 0px;
+}
+
+#information{
+    display: block;
+    table-layout: fixed;
+    margin-left:0%;
+}
+
+#bannerpic{
+    padding: 10px;
+    height: 90px;
+    width: 394px;
+}
+
+#pic{
+    height: 90px;
+    width: 90px;
+}
+
+#pic_small{
+    height: 25px;
+    width: 25px;
+}
+
+#status{
+    margin: 0px;
+    height: 12.5px;
+    width: 12.5px;
+}
+
+#smallstatus{
+    height: 15px;
+    width: 15px;
+}
+
+#banner{
+    padding: 0px;
+}
+
+#user_info{
+    width: 200px;
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+}
+
+#nav{
+    box-sizing:border-box;
+    border-radius: 0px;
+    border: 1px solid black;
+    width: 102%;
+    padding: 0px;
+    margin: -2px;
+    overflow:hidden;
+}
+
+#nav ul {
+    margin: 0;
+    padding: 0;
+    list-style:none;
+    box-sizing:border-box
+}
+
+#nav ul li.auth {
+    float:left;
+    padding: 0px;
+    width: 25%;
+    box-sizing:border-box
+}
+
+#nav ul li.unauth {
+    float:left;
+    padding: 0px;
+    width: 50%;
+    box-sizing:border-box
+}
+
+#nav ul li a {
+    display: block;
+    text-decoration: none;
+    background: #FF8C00;
+	width:  100%;
+	padding: 5px;
+    height: 43px;
+	border: 1px solid black;
+	border-radius: 0px;
+	margin: -0.5px;
+    float: left;
+    display: block;
+}
+
+#nav ul li a:hover{
+    background: #D2691E;
+}
+
+#nav ul li a tr td {
+    font-size: 125%;
+    font-family: "Arial", Arial, sans-serif;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+#block{
+	background: #FFDB99; 
+	width: 160px;
+    height: 160px;
+	padding: 5px;
+	border: 2px solid black;
+	border-radius: 12px;
+	margin: 5px;
+
+    overflow: hidden;
+}
+
+p.title{
+    white-space: nowrap;
+}
+
+p.rate{
+    margin: 0px;
+    padding: 0px;
+    font-size: 275%;
+}
+
+p.bigrate{
+    font-size: 400%;
+}
+
+#deadbutton {
+    display: block;
+	background: #191919;
+	padding: 5px;
+    width: 125px;
+	border: 2px solid black;
+	border-radius: 12px;
+	margin: 5px;
+    
+    font-size: 125%;
+    font-family: "Arial", Arial, sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    color: #8C8C8C;
+}
+
+#deletebutton {
+    display: block;
+	background: #FF8C00;
+	padding: 5px;
+    width: 125px;
+	border: 2px solid black;
+	border-radius: 12px;
+	margin: 5px;
+    
+    font-size: 125%;
+    font-family: "Arial", Arial, sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+#button {
+    display: block;
+	background: #FF8C00;
+	padding: 5px;
+    width: 125px;
+	border: 2px solid black;
+	border-radius: 12px;
+	margin: 5px;
+    
+    font-size: 125%;
+    font-family: "Arial", Arial, sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+#deletebutton:hover{
+    background: #D2691E;
+}
+
+#button:hover{
+    background: #D2691E;
+}
+
+input[type=submit]{
+    display: block;
+	background: #FF8C00;
+	padding: 5px;
+    width: 125px;
+	border: 2px solid black;
+	border-radius: 12px;
+	margin: 5px;
+    
+    font-size: 125%;
+    font-family: "Arial", Arial, sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+input[type=submit]:hover{
+    background: #D2691E;
+}
+
+#scrollable{
+    background: #E6C58A;
+    border-radius: 0px;
+    padding: 0px;
+	border: 2 px solid black;
+	height: 210px;
+	overflow-x: auto;
+}
+
+#scrollup{
+    background: #E6C58A;
+    border-radius: 0px;
+    padding: 5px;
+    margin: 0px;
+	border: 2 px solid black;
+	width: 145px;
+    height: 45px;
+	overflow-y: auto;
+}
+
+dir {
+	background: #FFDB99;
+	padding: 10px;
+	border: 2px solid black;
+	border-radius: 12px;
+	margin: 10px auto;
+    overflow: hidden
+}
+
+body {
+	background: #3589DC;
+}
+
+textarea {
+    resize: none;
+}

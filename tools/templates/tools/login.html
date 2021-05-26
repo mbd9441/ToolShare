@@ -1,0 +1,51 @@
+{% load staticfiles %}
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'tools/style.css' %}" />
+</head>
+{% include "tools/banner.html" %}
+
+<dir>
+	<center>
+		<font size = "6">Login</font>
+		<hr>
+		<form action="{%url 'tools:login'%}" method="post">
+			{%csrf_token%}
+			<table>
+				<tr>
+					<td>
+                        Email:
+                    </td> 
+                    <td>
+                        <input type="text" name="user_name" id="user_name" />
+                    </td>
+				</tr>
+				<tr>
+					<td>
+                        <br>
+                    </td>
+				</tr>                
+				<tr>
+					<td>
+                        Password:
+                    </td>
+                    <td>
+                        <input type="password" name="passwd" id="passwd" />
+                    </td>
+				</tr>
+                <tr>
+                    <td>
+                    </td>
+					<td>
+                        {% if message %}
+                            <font color = red>{{message}}</font>
+                        {% else %}
+                            <br>
+                        {% endif %}
+                    </td>
+				</tr>  
+			</table>
+			<input type="submit" value="Login" />
+		</form>
+        Don't have an account? Create one <a href="{%url 'tools:register'%}">here!</a>
+	</center>
+</dir>

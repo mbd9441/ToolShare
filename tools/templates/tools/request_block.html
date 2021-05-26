@@ -1,0 +1,31 @@
+{% load staticfiles %}
+
+<td>
+    <dir id="block">
+            <table>
+                <tr>
+                    <td>
+                        {% include "tools/smallicon.html" %}
+                    </td>
+                    <td>
+                        <a href="{% url 'tools:detail' request.tool_requested.pk %}">{{ request.tool_requested.tool_name }}</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img id="pic_small" src="{% static 'tools/user.png' %}"/>
+                    </td>
+                    <td>
+                        <a href="{% url 'tools:user' %}?u={{request.requester.pk}}">{{ request.requester.user.get_full_name }}</a>
+                    </td>
+                </tr>                
+            </table>
+            {% if request.tool_requested.rentable and request.requester.canrent %}
+                <a href="{% url 'tools:rent' %}?a=1&r={{request.pk}}"id="button">Accept</a>
+                <a href="{% url 'tools:rent' %}?a=0&r={{request.pk}}"id="button">Deny</a>
+            {% else %}
+                <dir id="deadbutton">Accept</dir>
+                <dir id="deadbutton">Deny</dir>
+            {% endif %}
+    </dir>
+</td>

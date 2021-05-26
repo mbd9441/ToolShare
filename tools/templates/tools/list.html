@@ -1,0 +1,120 @@
+{% load staticfiles %}
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'tools/style.css' %}" />
+</head>
+{% include "tools/banner.html" %}
+
+<dir>
+    <center>
+    <font size="6">
+    {%if tool_id %}
+        Edit {{tool.tool_name}}
+    {%else%}
+        List a Tool
+    {%endif%}
+    </font>
+    <hr>
+    <form action="{%url 'tools:list'%}" method="post">
+		{% csrf_token %}
+        {% if tool_id %}
+            <input type='hidden' name='tool_id' value='{{tool_id}}' />
+        {% endif %}
+			<table>
+				<tr>
+					<td>
+                        Tool Name:
+                    </td>
+					<td>
+                            <textarea type="text" rows="1" cols="40" name="tool_name" id="tool_name"/>{{tool_name}}</textarea>
+                    </td>
+				</tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        {%if name_message%}
+                            <font color = red>{{name_message}}</font>
+                        {% else %}
+                            <br>
+                        {% endif %}
+                    </td>
+                </tr>
+				<tr>
+					<td>
+                        Tool Description:
+                    </td>
+					<td>
+                        <textarea rows="10" cols="40" name="tool_desc" id="tool_desc">{{tool_desc}}</textarea>
+                    </td>
+				</tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        {%if desc_message%}
+                            <font color = red>{{desc_message}}</font>
+                        {% else %}
+                            <br>
+                        {% endif %}
+                    </td>
+                </tr>                
+                <tr>
+                    <td>
+                        Tool Type:
+                    </td>
+                    <td>
+                        <select name="tool_types" id = "tool_type_id">
+                        {% for key, value in tool_types %}
+                            {%if key == tool_type_id %}
+                                <option value="{{key}}" selected>{{ value }}</option>
+                            {% else %}
+                                <option value="{{key}}">{{ value }}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>   
+                        Shared:
+                    </td>
+                    <td>
+                        {% if rentable %}
+                            <input type="checkbox" name="rentable" id = "rentable" checked>
+                        {% else %}
+                            <input type="checkbox" name="rentable" id = "rentable" >
+                        {% endif %}
+                    <td>
+                </tr>
+			</table>
+            <font color = red>{{alert_message}}</font>
+            <br>
+            {% if tool %}
+                <td><input type="submit" value="Update"/></td>
+            {% else %}
+                <td><input type="submit" value="Create"/></td>
+            {% endif %}
+        </center>
+	</form>
+</dir>
+
+<dir>
+    <font size="6">Tools</font>
+        <dir id="scrollable">
+            <table>
+                <tr>
+                    {% for tool in tool_list %}
+                        {% include "tools/tool_block.html" %}
+                    {% endfor %}
+                </tr>
+            </table>
+        </dir>
+		{% if not tool_list %}
+                No tools are available for this user.
+		{% endif %}
+</dir>

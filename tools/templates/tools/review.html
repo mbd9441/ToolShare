@@ -1,0 +1,81 @@
+{% load staticfiles %}
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'tools/style.css' %}" />
+</head>
+{% include "tools/banner.html" %}
+
+<dir>
+    <center>
+        <font size="6">
+            Review {{reviewee.user.get_full_name}}
+        </font>
+        <hr>
+        <form action="{%url 'tools:review'%}" method="post">
+		{% csrf_token %}
+        {% if todo_review_id %}
+            <input type='hidden' name='todo_review_id' value='{{todo_review_id}}' />
+        {% endif %}
+			<table>
+                <tr>
+                    <td>
+                        {% if not todo_review.todo_review_type %}
+                            Tool Rented: 
+                        {% else %}
+                            Tool Shared:
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{todo_review.todo_tool}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Rating:
+                    </td>
+                    <td>
+                        <select name="rating" id = "rating">
+                            {% for num in num_list %}
+                                {% if num == rating %}
+                                    <option value="{{num}}" selected>{{num}}</option>
+                                {% else %}
+                                    <option value="{{num}}">{{num}}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br>
+                    </td>
+                </tr>
+				<tr>
+					<td>
+                        Comment:
+                    </td>
+					<td>
+                        <textarea rows="10" cols="40" name="comment" id="comment">{{comment}}</textarea>
+                    </td>
+				</tr>
+                <tr>
+                    <td>
+                        <br>
+                    </td>
+                    <td>
+                        {%if comment_message %}
+                            <font color = red>{{comment_message}}</font>
+                        {% else %}
+                            <br>
+                        {% endif %}
+                    </td>
+                </tr>                
+			</table>
+            <td><input type="submit" value="Submit"/></td>
+        </center>
+	</form>
+</dir>

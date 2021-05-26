@@ -1,0 +1,12 @@
+{% load staticfiles %}
+
+<td>
+    <dir id="block">
+        <center>
+            {{ user.user.get_full_name }}
+            <br>
+            <img id="pic" src="{% static 'tools/user.png' %}"/>
+            <a href="{% url 'tools:user' %}?u={{user.pk}}"id="button">More</a>
+        </center>
+    </dir>
+</td>

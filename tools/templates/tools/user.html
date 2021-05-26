@@ -1,0 +1,154 @@
+{% load staticfiles %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'tools/style.css' %}" />
+</head>
+{% include "tools/banner.html" %}
+
+<dir>
+    {% if user and req_user %}
+        <table>
+            <tr>
+                <td>
+                    <img id="pic" src="{% static 'tools/user.png' %}"/>
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                <font size ="6">{{req_user.user.get_full_name}}</font>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {{req_user.user.username}}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <pre>        </pre>
+                </td>
+                <td>
+                    Share rating:
+                </td>
+                <td>
+                    <p class = "bigrate">
+                        {{sharer_rating}}
+                    <p>
+                </td>
+                <td>
+                    <pre>        </pre>
+                </td>
+                <td>
+                    Borrow rating:
+                </td>
+                <td>
+                    <p class = "bigrate">
+                        {{borrower_rating}}
+                    <p>
+                </td>
+            </tr>
+        </table>
+
+    {% endif %}
+</dir>
+{% if isownpage %}
+    <dir>
+        <font size="6">Received Requests</font>
+            <dir id="scrollable">
+                <table>
+                    <tr>
+                        {% for request in request_list %}
+                            {% include "tools/request_block.html" %}
+                        {% endfor %}
+                    </tr>
+                 </table>
+            </dir>
+            {% if not request_list %}
+                You have no requests!
+            {% endif %}
+    </dir>
+    <dir>
+        <font size="6">Sent Requests</font>
+            <dir id="scrollable">
+                <table>
+                    <tr>
+                        {% for myrequest in my_request_list %}
+                            {% include "tools/myrequest_block.html" %}
+                        {% endfor %}
+                    </tr>
+                 </table>
+            </dir>
+            {% if not btool_list %}
+                You haven't requested any tools.
+            {% endif %}
+    </dir>
+{% endif %}
+
+<dir>
+	<font size="6">Reviews</font>
+        <dir id="scrollable">
+            <table>
+                <tr>
+                    {% for review in review_list %}
+                        {% include "tools/review_block.html" %}
+                    {% endfor %}
+                </tr>
+             </table>
+        </dir>
+		{% if not review_list %}
+            No reviews available for this user.
+		{% endif %}
+</dir>
+
+{% if isownpage %}
+    <dir>
+        <font size="6">Review Others</font>
+            <dir id="scrollable">
+                <table>
+                    <tr>
+                        {% for todoreview in todo_reviews %}
+                            {% include "tools/todo_review_block.html" %}
+                        {% endfor %}
+                    </tr>
+                 </table>
+            </dir>
+            {% if not btool_list %}
+                No reviews to make!
+            {% endif %}
+    </dir>
+{% endif %}
+
+<dir>
+    <font size="6">Tools</font>
+        <dir id="scrollable">
+            <table>
+                <tr>
+                    {% for tool in tool_list %}
+                        {% include "tools/tool_block.html" %}
+                    {% endfor %}
+                </tr>
+            </table>
+        </dir>
+		{% if not tool_list %}
+                No tools are available for this user.
+		{% endif %}
+</dir>
+
+{%if isownpage %}
+    <dir>
+        <font size="6">Borrowed Tools</font>
+            <dir id="scrollable">
+                <table>
+                    <tr>
+                        {% for tool in btool_list %}
+                            {% include "tools/tool_block.html" %}
+                        {% endfor %}
+                    </tr>
+                 </table>
+            </dir>
+            {% if not btool_list %}
+                No tools being borrowed!
+            {% endif %}
+    </dir>
+{% endif %}

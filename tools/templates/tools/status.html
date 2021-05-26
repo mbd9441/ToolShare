@@ -1,0 +1,11 @@
+{% load staticfiles %}
+    
+{% if tool.rentable == 0 %}
+    <img id="status" src="{% static 'tools/unavailable.png' %}"/>
+{%else%}
+    {% if tool.requested %}
+        <img id="status" src="{% static 'tools/pending.png' %}"/>
+    {% else %}
+        <img id="status" src="{% static 'tools/available.png' %}"/>
+    {% endif %}
+{% endif %}

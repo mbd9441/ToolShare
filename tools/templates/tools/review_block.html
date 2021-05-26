@@ -1,0 +1,29 @@
+{% load staticfiles %}
+
+<td>
+    <dir id="block">
+            <table>
+                <tr>
+                    <td>
+                        <img id="pic_small" src="{% static 'tools/user.png' %}"/>
+                    </td>
+                    <td>
+                        <a href="{% url 'tools:user' %}?u={{request.requester.pk}}">{{ review.reviewer.user.get_full_name }}</a>
+                    </td>
+                </tr>                
+            </table>
+            <center>
+            {% if review.review_type %}
+                Reviewed as a Borrower
+            {% else %}
+                Reviewed as a Sharer
+            {% endif %}
+            <p class = "rate">
+                {{review.rating}}
+            </p>
+            </center>
+            <dir id = "scrollup">
+                {{review.comment}}
+            </dir>
+    </dir>
+</td>

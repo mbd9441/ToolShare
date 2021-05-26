@@ -1,0 +1,36 @@
+{% load staticfiles %}
+
+<td>
+    <dir id="block">
+            <table>
+                <tr>
+                    <td>
+                        <img id="pic_small" src="{% static 'tools/user.png' %}"/>
+                    </td>
+                    <td>
+                        <a href="{% url 'tools:user' %}?u={{request.requester.pk}}">{{ todoreview.todo_reviewee.user.get_full_name }}</a>
+                    </td>
+                </tr>                
+            </table>
+            <center>
+                {% if todoreview.todo_review_type  %}
+                    Borrowed
+                {% else %}
+                    Loaned you
+                {% endif %}
+            </center>
+            <table>
+                <tr>
+                    <td>
+                        {% include "tools/smallicon.html" %}
+                    </td>
+                    <td>
+                        <a href="{% url 'tools:detail' todoreview.todo_tool.pk %}">{{ todoreview.todo_tool.tool_name }}</a>
+                    </td>
+                </tr>
+            </table>
+        <center>
+            <a href="{% url 'tools:review'%}?r={{todoreview.pk}}"id="button">Review</a>
+        </center>
+    </dir>
+</td>

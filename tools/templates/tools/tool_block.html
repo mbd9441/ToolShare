@@ -1,0 +1,22 @@
+{% load staticfiles %}
+
+<td>
+    <dir id="block">
+        <table>
+            <tr>
+                <td>
+                    {% include "tools/status.html" %}
+                </td>
+                <td>
+                    <p class="title">
+                        {{ tool.tool_name }}
+                    <p>
+                </td>
+            </tr>
+        </table>
+        <center>
+            {% include "tools/icon.html" %}
+            <a href="{% url 'tools:detail' tool.id %}"id="button">More</a>
+        </center>
+    </dir>
+</td>
